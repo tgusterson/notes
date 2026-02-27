@@ -16,6 +16,8 @@ Leader key: `<space>`
 | `<C-j>` | insert | Leave insert mode and move right (jump past autopaired char) |
 | `<Esc>` | n | Clear search highlights |
 | `<C-h/j/k/l>` | n | Navigate windows (works with tmux panes too) |
+| `<C-w><C-o>` | n | Close all other splits, keep only current (`:only`) |
+| `q` | n | Close floating diagnostic panes (auto-focused, so `q` exits) |
 | `\` | n | Toggle Neotree (file tree) |
 | `<leader>\` | n | Oil floating file explorer |
 | `<leader>vv` | n | Re-source config (`$MYVIMRC`) |
@@ -73,9 +75,11 @@ vim-fugitive is also installed for `:Git` commands.
 | Command | Action |
 |---------|--------|
 | `:Git blame` | Open blame panel (split) |
-| `q` | Close blame panel |
+| `:q` | Close the blame split (standard vim) |
+| `<CR>` | Open commit under cursor |
 | `o` / `O` | Open commit in split / new tab |
-| `<CR>` | Jump to commit |
+| `-` | Reblame at commit under cursor |
+| `P` | Reblame at parent of commit under cursor |
 
 **Diffing**
 | Command | Action |
@@ -84,17 +88,21 @@ vim-fugitive is also installed for `:Git` commands.
 | `:Gdiffsplit HEAD` | Diff against last commit |
 | `:Gdiffsplit HEAD~1` | Diff against N commits ago |
 | `]c` / `[c` | Next / previous diff hunk |
-| `do` | Diff obtain — pull change from other side |
-| `dp` | Diff put — push change to other side |
-| `:diffoff` | Close diff mode |
+| `<C-w><C-o>` | Close diff — keep only current window (recommended) |
+| `dq` | Close diff buffers (only works from fugitive-side buffer) |
+| `dd` | Open `:Gdiffsplit` on file under cursor (in `:Git` status) |
 
-**General**
+**General (`:Git` status window)**
 | Command | Action |
 |---------|--------|
 | `:Git` | Interactive status window (stage, commit, push, etc.) |
-| `:Git log` | Git log |
-| `s` / `u` | Stage / unstage file (in `:Git` status) |
-| `cc` | Commit (opens commit message buffer) |
+| `gq` | Close the status buffer |
+| `s` / `u` | Stage / unstage file or hunk |
+| `-` | Toggle stage/unstage |
+| `=` | Toggle inline diff |
+| `cc` | Create commit |
+| `ca` | Amend last commit |
+| `g?` | Show all available maps |
 
 ---
 
